@@ -47,8 +47,12 @@ func _input(event: InputEvent):
 		firstToThirdPerson()
 
 func handleGFXRot():
+	#var lookDir = position + Vector3(dir.x, 0, dir.y)
+	#var angle = dir.angle()
 	if dir.length() > .1:
-		GFX.rotation.y = lerp(GFX.rotation.y, thirdPersonCameraRoot.rotation.y, LERP_SLOW/2)
+		#GFX.rotation.y = lerp(GFX.rotation.y, thirdPersonCameraRoot.rotation.y, LERP_SLOW/2)
+		#GFX.look_at(lookDir)
+		GFX.rotation.y = lerp_angle(GFX.rotation.y,atan2(-dir.x, -dir.y), LERP_SLOW/2)
 
 func firstToThirdPerson():
 	if isFirstPerson:
