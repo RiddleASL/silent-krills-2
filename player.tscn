@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://bbq0u0wdm6w8j"]
+
+[ext_resource type="Script" uid="uid://1jvqrqa26mal" path="res://player.gd" id="1_4flbx"]
+[ext_resource type="Texture2D" uid="uid://k2oyy7l45bxd" path="res://icon.svg" id="2_onrkg"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sh265"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_4flbx"]
+
+[node name="Player" type="CharacterBody3D" unique_id=777989571]
+script = ExtResource("1_4flbx")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1967821713]
+shape = SubResource("CapsuleShape3D_sh265")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=586528532]
+mesh = SubResource("CapsuleMesh_4flbx")
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=1161293952]
+transform = Transform3D(0.405, 0, 0, 0, 0.405, 0, 0, 0, 0.405, 0, 0.5272597, -0.5338868)
+texture = ExtResource("2_onrkg")
+
+[node name="SpringArm3D" type="SpringArm3D" parent="." unique_id=1221590001]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5312492, 0)
+spring_length = 3.0
+
+[node name="Node3D" type="Node3D" parent="SpringArm3D" unique_id=2136406737]
+
+[node name="Camera_TP" type="Camera3D" parent="SpringArm3D/Node3D" unique_id=2100778853]
+transform = Transform3D(1, 0, 0, 0, 0.9840935, 0.17765157, 0, -0.17765157, 0.9840935, 0, 0, -0.07149476)
+
+[node name="Camera_FP_Root" type="Node3D" parent="." unique_id=496798155]
+
+[node name="Camera_FP" type="Camera3D" parent="Camera_FP_Root" unique_id=916447260]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.49735844, -0.51722145)
