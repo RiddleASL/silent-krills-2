@@ -1,5 +1,5 @@
 extends CharacterBody3D
-
+# moon smells
 
 @export var walkSpeed := 500
 @export var runSpeed := 800
@@ -8,10 +8,11 @@ extends CharacterBody3D
 @onready var thirdPersonCamera := $SpringArm3D/Node3D/Camera_TP
 @onready var thirdPersonCameraRoot := $SpringArm3D # third person camera root
 @onready var firstPersonCameraRoot := $Camera_FP_Root
+@onready var GFX := $GFX
 
 var LERP_SLOW := 0.1
 var SPEED
-var dir
+var dir: Vector2
 var isFirstPerson
 
 func _ready():
@@ -27,6 +28,8 @@ func _physics_process(delta: float):
 	velocity.x = lerp(velocity.x, dir.x * SPEED * delta, LERP_SLOW)
 	velocity.z = lerp(velocity.z, dir.y * SPEED * delta, LERP_SLOW)
 	move_and_slide()
+	
+	handleGFXRot()
 
 func _input(event: InputEvent):
 	if event is InputEventMouseMotion:
@@ -43,6 +46,9 @@ func _input(event: InputEvent):
 		isFirstPerson = !isFirstPerson
 		firstToThirdPerson()
 
+func handleGFXRot():
+	if dir.length() > .1:
+		GFX.rotation.y = lerp(GFX.rotation.y, thirdPersonCameraRoot.rotation.y, LERP_SLOW/2)
 
 func firstToThirdPerson():
 	if isFirstPerson:

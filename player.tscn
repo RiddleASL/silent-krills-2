@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://bbq0u0wdm6w8j"]
+[gd_scene format=3 uid="uid://cofmdihbsbn12"]
 
 [ext_resource type="Script" uid="uid://1jvqrqa26mal" path="res://player.gd" id="1_4flbx"]
 [ext_resource type="Texture2D" uid="uid://k2oyy7l45bxd" path="res://icon.svg" id="2_onrkg"]
@@ -13,10 +13,13 @@ script = ExtResource("1_4flbx")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1967821713]
 shape = SubResource("CapsuleShape3D_sh265")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=586528532]
-mesh = SubResource("CapsuleMesh_4flbx")
+[node name="GFX" type="Node3D" parent="." unique_id=510926219]
 
-[node name="Sprite3D" type="Sprite3D" parent="." unique_id=1161293952]
+[node name="TempMesh" type="MeshInstance3D" parent="GFX" unique_id=586528532]
+mesh = SubResource("CapsuleMesh_4flbx")
+skeleton = NodePath("../..")
+
+[node name="Sprite3D" type="Sprite3D" parent="GFX" unique_id=1161293952]
 transform = Transform3D(0.405, 0, 0, 0, 0.405, 0, 0, 0, 0.405, 0, 0.5272597, -0.5338868)
 texture = ExtResource("2_onrkg")
 
